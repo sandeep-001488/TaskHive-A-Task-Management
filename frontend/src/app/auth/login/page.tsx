@@ -9,37 +9,43 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
- const handleSubmit = async (e: React.FormEvent) => {
-   e.preventDefault();
-   try {
-     const response = await axios.post(
-       "https://task-hive-api.vercel.app/api/auth/login",
-       {
-         email,
-         password,
-       }
-     );
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+      "https://task-hive-api.vercel.app/api/auth/login",
+      {
+        email,
+        password,
+      }
+    );
 
-     const { token } = response.data.data;
-     // Store the token in localStorage for use on other pages
+    console.log(response.data); 
+    const { token } = response.data.data || {} // Add fallback for destructuring
+    console.log("token is",token); 
 
-     console.log(token)
-     localStorage.setItem("token", token);
+    if (!token) {
+      throw new Error("Token not found in the response");
+    }
 
-     toast("You're logged in successfully", {
-       style: {
-         backgroundColor: "blue",
-         color: "white",
-       },
-     });
+    // Store the token in localStorage for use on other pages
+    localStorage.setItem("token", token);
 
-     router.push("/todos");
-   } catch (error) {
-     console.log(error);
-     // Optionally, show an error toast if login fails
-     toast.error("Login failed. Please try again.");
-   }
- };
+    toast("You're logged in successfully", {
+      style: {
+        backgroundColor: "blue",
+        color: "white",
+      },
+    });
+
+    router.push("/todos");
+  } catch (error) {
+    console.log(error);
+    // Optionally, show an error toast if login fails
+    toast.error("Login failed. Please try again.");
+  }
+};
+
 
 
   return (
