@@ -1,0 +1,5 @@
+# Ignore environment variables files
+*.env
+
+# Ignore Docker compose file if you don't want to commit it (optional)
+docker-compose.yml
