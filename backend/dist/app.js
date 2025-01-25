@@ -12,6 +12,7 @@ const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const todoRoutes_1 = __importDefault(require("./routes/todoRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const errorMiddleware_1 = require("./middlewares/errorMiddleware");
+const port = process.env.PORT || 5000;
 const app = (0, express_1.default)();
 const corsOptions = {
     origin: "https://taskhive-manage-your-tasks.vercel.app",
@@ -23,14 +24,13 @@ app.use((0, cors_1.default)(corsOptions));
 app.use((0, morgan_1.default)("dev"));
 app.use(body_parser_1.default.json());
 app.use((0, cookie_parser_1.default)());
-app.use("/", (req, res) => {
-    res.send("Hello from the backend!");
-});
+// app.use("/", (req: Request, res: Response) => {
+//   res.send("Hello from the backend!");
+// });
 app.use("/api/auth", authRoutes_1.default);
 app.use("/api/todos", todoRoutes_1.default);
 app.use("/api/user", userRoutes_1.default);
 app.use(errorMiddleware_1.errorMiddleware);
-// Start the server
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });

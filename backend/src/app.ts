@@ -1,12 +1,13 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import cors from "cors"; 
+import cors from "cors";
 import morgan from "morgan";
 import authRoutes from "./routes/authRoutes";
 import todoRoutes from "./routes/todoRoutes";
 import userRoutes from "./routes/userRoutes";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
+const port = process.env.PORT || 5000;
 
 const app = express();
 
@@ -17,9 +18,9 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 
-app.use(morgan("dev")); 
+app.use(morgan("dev"));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -33,7 +34,6 @@ app.use("/api/user", userRoutes);
 
 app.use(errorMiddleware);
 
-// Start the server
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(port, () => {
+  console.log(`Server runnning on port ${port}`);
 });

@@ -29,7 +29,7 @@ exports.authService = {
             throw new Error("Invalid email or password");
         }
         const token = jsonwebtoken_1.default.sign({ id: user.id }, dbConfig_1.config.jwtSecret, {
-            expiresIn: "1h",
+            expiresIn: "7h",
         });
         return token;
     },
