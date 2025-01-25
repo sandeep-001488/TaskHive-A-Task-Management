@@ -7,7 +7,7 @@ import authRoutes from "./routes/authRoutes";
 import todoRoutes from "./routes/todoRoutes";
 import userRoutes from "./routes/userRoutes";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
-const port = process.env.PORT || 5000;
+
 
 const app = express();
 
@@ -35,6 +35,6 @@ app.use("/api/user", userRoutes);
 
 app.use(errorMiddleware);
 
-app.listen(port, () => {
-  console.log(`Server runnning on port ${port}`);
+app.listen(5000, () => {
+  console.log(`Server runnning on port 5000`);
 });

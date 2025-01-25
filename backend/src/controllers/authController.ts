@@ -21,7 +21,7 @@ export const authController = {
       const user = await authService.signUp(email, password, name);
       return responseUtil.sendSuccess(res, "User created successfully", user);
     } catch (error) {
-      console.error("Sign-up Error:", error);
+      console.error("Full Sign-up Error:", JSON.stringify(error, null, 2));
       return responseUtil.sendError(res, error);
     }
   },
