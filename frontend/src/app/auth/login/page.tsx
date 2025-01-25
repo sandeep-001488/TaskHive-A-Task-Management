@@ -22,7 +22,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     console.log(response.data); 
     const { token } = response.data.data || {} // Add fallback for destructuring
-    console.log("token is",token); 
+    console.log("token isss ",token); 
 
     if (!token) {
       throw new Error("Token not found in the response");
