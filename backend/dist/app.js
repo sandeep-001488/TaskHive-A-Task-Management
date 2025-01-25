@@ -24,13 +24,13 @@ app.use((0, cors_1.default)(corsOptions));
 app.use((0, morgan_1.default)("dev"));
 app.use(body_parser_1.default.json());
 app.use((0, cookie_parser_1.default)());
-// app.use("/", (req: Request, res: Response) => {
-//   res.send("Hello from the backend!");
-// });
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "TaskHive API is running" });
+});
 app.use("/api/auth", authRoutes_1.default);
 app.use("/api/todos", todoRoutes_1.default);
 app.use("/api/user", userRoutes_1.default);
 app.use(errorMiddleware_1.errorMiddleware);
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Server runnning on port ${port}`);
 });

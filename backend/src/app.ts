@@ -25,9 +25,10 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// app.use("/", (req: Request, res: Response) => {
-//   res.send("Hello from the backend!");
-// });
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({ message: "TaskHive API is running" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/todos", todoRoutes);
 app.use("/api/user", userRoutes);
