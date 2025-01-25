@@ -7,11 +7,15 @@ exports.authController = {
     signUp: async (req, res) => {
         try {
             const { email, password, name } = req.body;
+            console.log("Signup Request:", { email, name }); // Log input
             const user = await authService_1.authService.signUp(email, password, name);
             return responseUtil_1.responseUtil.sendSuccess(res, "User created successfully", user);
         }
         catch (error) {
-            console.error("Full Sign-up Error:", JSON.stringify(error, null, 2));
+            console.error("Full Sign-up Error:", error);
+            console.error("Error Name:", error.name);
+            console.error("Error Message:", error.message);
+            console.error("Error Stack:", error.stack);
             return responseUtil_1.responseUtil.sendError(res, error);
         }
     },

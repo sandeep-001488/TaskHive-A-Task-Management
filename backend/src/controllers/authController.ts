@@ -18,10 +18,14 @@ export const authController = {
   signUp: async (req: Request<{}, {}, SignUpRequestBody>, res: Response) => {
     try {
       const { email, password, name } = req.body;
+      console.log("Signup Request:", { email, name }); // Log input
       const user = await authService.signUp(email, password, name);
       return responseUtil.sendSuccess(res, "User created successfully", user);
-    } catch (error) {
-      console.error("Full Sign-up Error:", JSON.stringify(error, null, 2));
+    } catch (error: any) {
+      console.error("Full Sign-up Error:", error);
+      console.error("Error Name:", error.name);
+      console.error("Error Message:", error.message);
+      console.error("Error Stack:", error.stack);
       return responseUtil.sendError(res, error);
     }
   },

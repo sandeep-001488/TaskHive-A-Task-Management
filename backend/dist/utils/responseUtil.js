@@ -7,6 +7,11 @@ exports.responseUtil = {
     },
     sendError: (res, error) => {
         console.error(error);
-        res.status(500).json({ message: error.message || "Internal Server Error" });
+        res
+            .status(500)
+            .json({
+            message: error.message || "Internal Server Error",
+            error: process.env.NODE_ENV === "development" ? error : {},
+        });
     },
 };
