@@ -11,7 +11,10 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 const app = express();
 
 const corsOptions = {
-  origin: "https://taskhive-manage-your-tasks.vercel.app",
+  origin: [
+    "http://localhost:3000",
+    "https://taskhive-manage-your-tasks.vercel.app",
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
