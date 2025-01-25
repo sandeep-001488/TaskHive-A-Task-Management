@@ -49,11 +49,14 @@ export default function TodoItem({ todo }: TodoItemProps) {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/todos/${todo.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://task-hive-api.vercel.app/api/todos/${todo.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast("Your task is deleted successfully", {
         style: {
           backgroundColor: "blue",

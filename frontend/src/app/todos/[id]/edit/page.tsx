@@ -19,7 +19,7 @@ export default function EditTodo() {
       try {
         const token = localStorage.getItem("token");
         const { data } = await axios.get(
-          `http://localhost:5000/api/todos/${id}`,
+          `https://task-hive-api.vercel.app/api/todos/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -40,18 +40,18 @@ export default function EditTodo() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/todos/${id}`,
+        `https://task-hive-api.vercel.app/api/todos/${id}`,
         { id, ...todo },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-       toast("Todo has been updated", {
-         style: {
-           backgroundColor: "blue",
-           color: "white",
-         },
-       });
+      toast("Todo has been updated", {
+        style: {
+          backgroundColor: "blue",
+          color: "white",
+        },
+      });
       router.push("/todos");
     } catch (error) {
       console.error("Error updating todo:", error);

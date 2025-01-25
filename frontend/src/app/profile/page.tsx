@@ -8,7 +8,7 @@ import Loading from "@/components/Loader";
 interface User {
   name: string;
   email: string;
-  id:string;
+  id: string;
 }
 
 export default function Profile() {
@@ -29,7 +29,7 @@ export default function Profile() {
 
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/user/profile",
+          "https://task-hive-api.vercel.app/api/user/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -43,10 +43,10 @@ export default function Profile() {
     fetchProfile();
   }, []);
 
- const capitalizeFirstName = (str: string) => {
-   const firstName = str.split(" ")[0];
-   return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
- };
+  const capitalizeFirstName = (str: string) => {
+    const firstName = str.split(" ")[0];
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 mt-0 flex items-center justify-center ">
@@ -62,7 +62,8 @@ export default function Profile() {
         {user ? (
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2 text-teal-800">
-              <span className="text-blue-800">Welcome,</span> {capitalizeFirstName(user.name)}
+              <span className="text-blue-800">Welcome,</span>{" "}
+              {capitalizeFirstName(user.name)}
             </h1>
 
             <div className="bg-gray-50 p-4 rounded-lg mt-6">
@@ -76,7 +77,7 @@ export default function Profile() {
           // <div className="text-center">
           //   <p className="text-gray-500">Loading profile...</p>
           // </div>
-          <Loading/>
+          <Loading />
         )}
       </div>
     </div>

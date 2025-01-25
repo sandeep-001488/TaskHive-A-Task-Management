@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -35,7 +34,7 @@ export default function TodoNavbar() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        "https://task-hive-api.vercel.app/api/auth/logout",
         {},
         {
           withCredentials: true,

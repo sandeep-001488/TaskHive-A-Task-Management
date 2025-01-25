@@ -13,9 +13,9 @@ export default function Signup() {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        "https://task-hive-api.vercel.app/api/auth/signup",
         {
-          name:username,
+          name: username,
           email,
           password,
         },
@@ -25,7 +25,7 @@ export default function Signup() {
           },
         }
       );
-      router.push("/auth/login"); 
+      router.push("/auth/login");
     } catch (error) {
       console.log(error);
     }

@@ -25,7 +25,7 @@ export default function EditProfile() {
 
     try {
       await axios.put(
-        "http://localhost:5000/api/user/profile",
+        "https://task-hive-api.vercel.app/api/user/profile",
         {
           name: username,
           password,
@@ -36,12 +36,12 @@ export default function EditProfile() {
           },
         }
       );
-       toast("Profile has been updated successfully", {
-         style: {
-           backgroundColor: "blue",
-           color: "white",
-         },
-       });
+      toast("Profile has been updated successfully", {
+        style: {
+          backgroundColor: "blue",
+          color: "white",
+        },
+      });
       router.push("/profile");
     } catch (error) {
       console.error("Error updating profile", error);

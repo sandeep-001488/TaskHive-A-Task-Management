@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -20,20 +20,20 @@ export default function CreateTodo() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/todos",
+        "https://task-hive-api.vercel.app/api/todos",
         { title, description },
         {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-       toast("Todo has been created", {
-         style: {
-           backgroundColor: "blue",
-           color: "white",
-         },
-       });
+      toast("Todo has been created", {
+        style: {
+          backgroundColor: "blue",
+          color: "white",
+        },
+      });
       router.push("/todos");
     } catch (error) {
       console.log(error);
