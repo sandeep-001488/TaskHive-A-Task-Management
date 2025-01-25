@@ -50,7 +50,11 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 mt-0 flex items-center justify-center ">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 relative ">
+      <div
+        className={`w-full max-w-md ${
+          user && "bg-white"
+        } rounded-xl shadow-lg p-8 relative `}
+      >
         {user && (
           <button
             className="text-red-500 hover:text-red-700 font-medium absolute top-0 right-2"

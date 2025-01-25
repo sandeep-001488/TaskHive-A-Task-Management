@@ -20,12 +20,11 @@ const handleSubmit = async (e: React.FormEvent) => {
       }
     );
 
-    console.log("Full response data:", response.data);
+    // console.log("Full response data:", response.data);
 
-    // Adjust token extraction based on the actual response structure
     const token = response.data.token || response.data.data?.token;
 
-    console.log("token isss ", token);
+    // console.log("token isss ", token);
 
     if (!token) {
       throw new Error("Token not found in the response");
@@ -40,7 +39,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       },
     });
 
-    router.push("/todos");
+    router.push("/");
   } catch (error) {
     console.log(error);
     toast.error("Login failed. Please try again.");

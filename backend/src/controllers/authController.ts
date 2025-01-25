@@ -18,7 +18,7 @@ export const authController = {
   signUp: async (req: Request<{}, {}, SignUpRequestBody>, res: Response) => {
     try {
       const { email, password, name } = req.body;
-      console.log("Signup Request:", { email, name }); // Log input
+      console.log("Signup Request:", { email, name }); 
       const user = await authService.signUp(email, password, name);
       return responseUtil.sendSuccess(res, "User created successfully", user);
     } catch (error: any) {
