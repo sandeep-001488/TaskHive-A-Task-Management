@@ -9,49 +9,39 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(
-  //       "https://task-hive-api.vercel.app/api/auth/login",
-  //       {
-  //         email,
-  //         password,
-  //       }
-  //     );
+ const handleSubmit = async (e: React.FormEvent) => {
+   e.preventDefault();
+   try {
+     const response = await axios.post(
+       "https://task-hive-api.vercel.app/api/auth/login",
+       {
+         email,
+         password,
+       }
+     );
 
-  //     const { token } = response.data.data;
-  //     localStorage.setItem("token", token);
-  //     toast("You're logged in successfully", {
-  //       style: {
-  //         backgroundColor: "blue",
-  //         color: "white",
-  //       },
-  //     });
-  //     router.push("/todos");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post(
-      "https://task-hive-api.vercel.app/api/auth/login",
-      {
-        email,
-        password,
-      }
-    );
+     const { token } = response.data.data;
+     // Store the token in localStorage for use on other pages
 
-    const token = response.data.data.token;
-    localStorage.setItem("token", token);
-    toast("You're logged in successfully");
-    router.push("/todos");
-  } catch (error) {
-   console.log(error)
-  }
-};
+     console.log(token)
+     localStorage.setItem("token", token);
+
+     toast("You're logged in successfully", {
+       style: {
+         backgroundColor: "blue",
+         color: "white",
+       },
+     });
+
+     router.push("/todos");
+   } catch (error) {
+     console.log(error);
+     // Optionally, show an error toast if login fails
+     toast.error("Login failed. Please try again.");
+   }
+ };
+
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form
