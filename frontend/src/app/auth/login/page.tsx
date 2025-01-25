@@ -20,15 +20,17 @@ const handleSubmit = async (e: React.FormEvent) => {
       }
     );
 
-    console.log(response.data); 
-    const { token } = response.data.data || {} // Add fallback for destructuring
-    console.log("token isss ",token); 
+    console.log("Full response data:", response.data);
+
+    // Adjust token extraction based on the actual response structure
+    const token = response.data.token || response.data.data?.token;
+
+    console.log("token isss ", token);
 
     if (!token) {
       throw new Error("Token not found in the response");
     }
 
-    // Store the token in localStorage for use on other pages
     localStorage.setItem("token", token);
 
     toast("You're logged in successfully", {
@@ -41,7 +43,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     router.push("/todos");
   } catch (error) {
     console.log(error);
-    // Optionally, show an error toast if login fails
     toast.error("Login failed. Please try again.");
   }
 };

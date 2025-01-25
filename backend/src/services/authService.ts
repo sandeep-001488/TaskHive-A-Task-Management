@@ -28,7 +28,7 @@ export const authService = {
     }
 
     const token = jwt.sign({ id: user.id }, config.jwtSecret, {
-      expiresIn: "1h",
+      expiresIn: "7h",
     });
     return token;
   },
