@@ -14,7 +14,7 @@ const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const errorMiddleware_1 = require("./middlewares/errorMiddleware");
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://taskhive-manage-your-tasks.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
