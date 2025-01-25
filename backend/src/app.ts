@@ -24,9 +24,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/", (req: Request, res: Response) => {
-  res.send("Hello from the backend!");
-});
+// app.use("/", (req: Request, res: Response) => {
+//   res.send("Hello from the backend!");
+// });
 app.use("/api/auth", authRoutes);
 app.use("/api/todos", todoRoutes);
 app.use("/api/user", userRoutes);
