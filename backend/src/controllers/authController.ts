@@ -15,7 +15,7 @@ interface LoginRequestBody {
 }
 
 export const authController = {
-  signUp: async (req: Request, res: Response) => {
+  signUp: async (req: Request<{}, {}, SignUpRequestBody>, res: Response) => {
     try {
       const { email, password, name } = req.body;
       const file = req.file;
