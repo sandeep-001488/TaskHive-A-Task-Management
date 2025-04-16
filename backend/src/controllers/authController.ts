@@ -15,17 +15,19 @@ interface LoginRequestBody {
 }
 
 export const authController = {
-  signUp: async (req: Request<{}, {}, SignUpRequestBody>, res: Response) => {
+  signUp: async (req: Request, res: Response) => {
     try {
       const { email, password, name } = req.body;
-      console.log("Signup Request:", { email, name }); 
-      const user = await authService.signUp(email, password, name);
+      const file = req.file;
+
+      console.log("Signup Request:", { email, name, hasFile: !!file });
+
+      // Pass file buffer to the service if a file exists
+      const user = await authService.signUp(email, password, name, file);
+
       return responseUtil.sendSuccess(res, "User created successfully", user);
     } catch (error: any) {
       console.error("Full Sign-up Error:", error);
-      console.error("Error Name:", error.name);
-      console.error("Error Message:", error.message);
-      console.error("Error Stack:", error.stack);
       return responseUtil.sendError(res, error);
     }
   },
