@@ -12,6 +12,7 @@ export const userService = {
         name: true,
         createdAt: true,
         updatedAt: true,
+        profilePhoto: true,
       },
     });
 
@@ -21,17 +22,51 @@ export const userService = {
 
     return user;
   },
+  // updateProfile: async (
+  //   userId: string,
+  //   data: {
+  //     name?: string;
+  //     password?: string;
+  //   }
+  // ) => {
+  //   const updateData: { name?: string; password?: string } = {};
+
+  //   if (data.name) updateData.name = data.name;
+  //   if (data.password) updateData.password = data.password;
+
+  //   const user = await prisma.user.update({
+  //     where: { id: userId },
+  //     data: updateData,
+  //     select: {
+  //       id: true,
+  //       email: true,
+  //       name: true,
+  //     },
+  //   });
+
+  //   if (!user) {
+  //     throw new Error("User not found");
+  //   }
+
+  //   return user;
+  // },
   updateProfile: async (
     userId: string,
     data: {
       name?: string;
       password?: string;
+      profilePhoto?: string;
     }
   ) => {
-    const updateData: { name?: string; password?: string } = {};
+    const updateData: {
+      name?: string;
+      password?: string;
+      profilePhoto?: string;
+    } = {};
 
     if (data.name) updateData.name = data.name;
     if (data.password) updateData.password = data.password;
+    if (data.profilePhoto) updateData.profilePhoto = data.profilePhoto;
 
     const user = await prisma.user.update({
       where: { id: userId },
@@ -40,6 +75,7 @@ export const userService = {
         id: true,
         email: true,
         name: true,
+        profilePhoto: true, // <-- Include this
       },
     });
 
